@@ -1,0 +1,45 @@
+import java.util.*;
+public class ebbill {
+
+	public static void main(String[] args) {
+Scanner sc =new Scanner(System.in);
+System.out.println("enter days");
+ int days = sc.nextInt();
+ int num=0;
+ String s="";
+ String str[] = new String[days+1];
+ for(int i=0;i<str.length;i++) {
+	str[i]=sc.nextLine(); 
+	if(i!=str.length-1) {
+		str[i]+="^";
+	}
+ }
+ for(int i=0;i<str.length;i++) {
+	 s+=str[i];
+ }
+ String array[]=s.split("\\^");
+ HashMap<String,Integer> hm = new HashMap<>();
+ for(int i=0;i<array.length;i++) {
+	 int n = array[i].indexOf(":");
+	 String shops=array[i].substring(n+1);
+	 String shop[]=shops.split("\\$");
+	 for(String name:shop) {
+		 String shp[] = name.split(" ") ;
+		 if(!hm.containsKey(shp[0])) {
+			  num = Integer.parseInt(shp[1]);
+			 System.out.println("hi");
+			 hm.put(shp[0], num);
+		 }
+		 else {
+			  num = Integer.parseInt(shp[1]);
+			 hm.put(shp[0],hm.get(shp[0])+num);
+		 }}}
+ TreeMap<String,Integer> tr = new TreeMap<>();
+ tr.putAll(hm);
+ tr.forEach((key,value) -> {
+		 System.out.println(value);
+		 System.out.println("gomma");
+});
+	}
+
+}
